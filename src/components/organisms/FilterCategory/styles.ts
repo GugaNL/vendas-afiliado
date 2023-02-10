@@ -40,17 +40,18 @@ export const CategoryListItem = styled.li`
   margin-bottom: 7px;
 
   &:hover {
-    color: ${props => props.theme.colors.secondary};
+    color: ${(props) => props.theme.colors.secondary};
   }
 `;
 
 export const CategoryItemLink = styled(Link)`
-  color: ${props => props.theme.colors.lightBlack};
+  font-size: 16px;
+  color: ${(props) => props.theme.colors.lightBlack};
   text-decoration: none;
   font-weight: 700;
-  transition: all .3s;
+  transition: all 0.3s;
 
   &:hover {
-    color: ${props => props.theme.colors.secondary};
+    color: ${(props) => props.theme.colors.secondary};
   }
 `;
