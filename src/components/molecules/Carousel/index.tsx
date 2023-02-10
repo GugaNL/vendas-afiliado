@@ -1,13 +1,13 @@
 import { useRef } from "react";
 import { ItemObject } from "react-elastic-carousel";
-import { CarouselLib, Container, ContWrapper } from "./styles";
+import { CarouselLib, CarouselContainer, ContWrapper } from "./styles";
 import { BreakpointSize } from "../../../styles/Breakpoints";
 import { CardProduct } from "../../atoms/CardProduct";
 
 const breakPoints = [
   { width: BreakpointSize.sm, itemsToShow: 2 },
   { width: BreakpointSize.md, itemsToShow: 4 },
-  { width: BreakpointSize.lg, itemsToShow: 5 },
+  { width: BreakpointSize.lg, itemsToShow: 4 },
   { width: BreakpointSize.xl, itemsToShow: 5 },
 ];
 
@@ -26,7 +26,7 @@ export const Carousel = ({ title, products }: any) => {
   };
 
   return (
-    <Container>
+    <CarouselContainer>
       <ContWrapper>
         <h1>{title}</h1>
         <CarouselLib
@@ -42,6 +42,6 @@ export const Carousel = ({ title, products }: any) => {
           ))}
         </CarouselLib>
       </ContWrapper>
-    </Container>
+    </CarouselContainer>
   );
 };

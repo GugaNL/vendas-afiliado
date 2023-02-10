@@ -9,16 +9,31 @@ type CarouselLibProps = {
   children: Array<React.ReactElement>;
 };
 
-export const Container = styled.div`
+export const CarouselContainer = styled.div`
   grid-area: CA;
   margin: 24px 12px;
-  padding: 20px;
-  width: calc(100vw - 300px);
+  width: calc(100vw);
 
   > h1 {
     font-size: 35px;
     color: rgb(120, 117, 117);
     text-align: center;
+  }
+
+  ${BreakAt(940)} {
+    width: calc(100vw - 50px);
+  }
+
+  ${BreakAt(1040)} {
+    width: calc(100vw - 150px);
+  }
+
+  ${BreakAt(1140)} {
+    width: calc(100vw - 250px);
+  }
+
+  ${BreakAt(1240)} {
+    width: calc(100vw - 350px);
   }
 `;
 
