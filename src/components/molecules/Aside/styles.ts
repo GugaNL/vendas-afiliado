@@ -4,7 +4,7 @@ type ContainerProps = {
   menuIsOpen: boolean;
 }
 
-export const Container = styled.div.attrs((props: ContainerProps) => ({
+export const AsideContainer = styled.div.attrs((props: ContainerProps) => ({
   menuIsOpen: props.menuIsOpen
 }))<ContainerProps>`
   grid-area: AS;

@@ -1,10 +1,17 @@
 import styled from "styled-components";
+import { BreakAt } from "../../../styles/Breakpoints";
 
 export const Container = styled.div`
   grid-area: CT;
-  padding: 25px;
-
+  padding: 0;
   height: calc(100vh - 70px); //Altura da tela inteira menos a altura do header
+  margin-top: 60px;
+
+  ${BreakAt(600)} {
+    margin-top: 0;
+    padding: 25px;
+  }
+
   //overflow-y: scroll; //O que não couber vai gerar o scroll
 
   /* ::-webkit-scrollbar{

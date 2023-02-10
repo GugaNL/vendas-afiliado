@@ -9,6 +9,7 @@ import { Grid } from "../../atoms/Grid";
 import { ProductBox } from "../../atoms/ProductBox";
 import { Header } from "../../organisms/Header";
 import { Carousel } from "../Carousel";
+import { Footer } from "../../organisms/Footer";
 
 //Mock
 import { productsIframeList, productsVitrineList } from "../../../mocks";
@@ -32,6 +33,7 @@ const Layout = () => {
         {productsIframeList && productsIframeList.length > 0 && (
           <Carousel title="Ofertas em Reserva" products={productsIframeList} />
         )}
+        <Footer />
       </Content>
     </Container>
   );

@@ -14,6 +14,11 @@ export const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: column;
+
+  ${BreakAt(601)} {
+    flex-direction: row;
+  }
 `;
 
 export const ContentDescription = styled.div`
@@ -43,11 +48,18 @@ export const HeaderDescription = styled.div`
     background: rgba(255, 255, 255, 0.3);
     position: absolute;
     left: 150px;
+    display: none;
   }
 
   > span {
     color: rgba(255, 255, 255, 0.5);
     line-height: 26px;
+  }
+
+  ${BreakAt(601)} {
+    &:before {
+      display: block;
+    }
   }
 `;
 
@@ -73,7 +85,7 @@ export const SearchButton = styled.button`
 `;
 
 export const SearchFieldInput = styled.input`
-  width: 300px;
+  width: 250px;
   background-color: #fff;
   float: left;
   font-size: 16px;
@@ -85,11 +97,20 @@ export const SearchFieldInput = styled.input`
   border-right: none;
   color: #666;
   outline: none;
+
+  ${BreakAt(601)} {
+    width: 300px;
+  }
 `;
 
 export const ContactContent = styled.div`
   margin-right: 18px;
   display: flex;
+  margin-top: 12px;
+
+  ${BreakAt(601)} {
+    margin-top: 0;
+  }
 `;
 
 export const ContentText = styled.span`

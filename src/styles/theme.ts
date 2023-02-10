@@ -11,6 +11,7 @@ export const theme = {
         lightBlack: '#515151',
         dark: "#c79100",
         gray: '#808080',
+        lightGray: '#aaa',
         silver: '#C8C8C8',
     }
 }

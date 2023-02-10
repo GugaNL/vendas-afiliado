@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  Container,
+  AsideContainer,
   Header,
   Logo,
   Title,
@@ -38,7 +38,7 @@ const Aside = ({ children }: any) => {
   // };
 
   return (
-    <Container menuIsOpen={showToggleMenu}>
+    <AsideContainer menuIsOpen={showToggleMenu}>
       <Header>
         <ToogleMenu onClick={() => handleToggleMenu()}>
           {showToggleMenu ? <MdClose /> : <MdMenu />}
@@ -49,7 +49,7 @@ const Aside = ({ children }: any) => {
       <MenuContainer>
         {children}
       </MenuContainer>
-    </Container>
+    </AsideContainer>
   );
 };
 
