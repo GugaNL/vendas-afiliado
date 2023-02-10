@@ -12,7 +12,7 @@ export const SearchBox = () => {
           placeholder="Pesquisar"
           name="search-input"
           value={searchTerm}
-          onChange={() => {}}
+          onChange={(e) => setsearchTerm(e.target.value)}
         />
         <button type="submit">Pesquisar</button>
       </FormSearch>

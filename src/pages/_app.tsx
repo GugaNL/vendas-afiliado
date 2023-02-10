@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Loader } from "../components/molecules/Loader";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../styles/theme";
+import { GlobalStyles } from "../styles/global-styles";
 
 function Loading() {
   const router = useRouter();
@@ -30,9 +31,12 @@ function Loading() {
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
-      {Loading()}
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <>
+      <GlobalStyles />
+      <ThemeProvider theme={theme}>
+        {Loading()}
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </>
   );
 }

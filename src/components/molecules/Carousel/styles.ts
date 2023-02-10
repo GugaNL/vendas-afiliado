@@ -51,6 +51,7 @@ export const CarouselLib = styled(Carousel).attrs(
     children: props.children,
   })
 )`
+margin-top: 24px;
   > div > button {
     background-color: transparent;
     box-shadow: none;

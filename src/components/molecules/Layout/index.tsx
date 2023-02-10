@@ -6,7 +6,8 @@ import Content from "../Content";
 import { SearchBox } from "../../molecules/SearchBox";
 import { FilterCategory } from "../../organisms/FilterCategory";
 import { Grid } from "../../atoms/Grid";
-import { ProductBox } from "@/components/atoms/ProductBox";
+import { ProductBox } from "../../atoms/ProductBox";
+import { Header } from "../../organisms/Header";
 import { Carousel } from "../Carousel";
 
 //Mock
@@ -15,6 +16,7 @@ import { productsIframeList, productsVitrineList } from "../../../mocks";
 const Layout = () => {
   return (
     <Container>
+      <Header />
       <Aside>
         <SearchBox />
         <FilterCategory />

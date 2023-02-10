@@ -24,6 +24,7 @@ export const FormSearch = styled.form`
     border: none;
     cursor: pointer;
     transition: all .2s;
+    padding: 5px;
 
     &:hover {
       color: #F5F5F5;
@@ -35,7 +36,7 @@ export const SearchFieldInput = styled.input`
   width: 70%;
   background-color: #fff;
   float: left;
-  font-size: 12px;
+  font-size: 14px;
   padding: 10px;
   border: 1px solid #d5d1d8;
   border-right-color: rgb(213, 209, 216);
@@ -43,4 +44,5 @@ export const SearchFieldInput = styled.input`
   border-right-width: 1px;
   border-right: none;
   color: #666;
+  outline: none;
 `;
