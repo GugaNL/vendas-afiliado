@@ -51,10 +51,24 @@ export const CarouselLib = styled(Carousel).attrs(
     children: props.children,
   })
 )`
-margin-top: 24px;
+  margin-top: 24px;
+
   > div > button {
     background-color: transparent;
     box-shadow: none;
+    display: none;
+
+    ${BreakAt(370)} {
+      display: block;
+    }
+  }
+
+  > div > div {
+    margin: 0;
+
+    ${BreakAt(370)} {
+      margin: 0 10px;
+    }
   }
 
   > div > div > div {

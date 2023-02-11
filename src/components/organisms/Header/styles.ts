@@ -6,7 +6,7 @@ import { BreakAt, BreakpointSize } from "../../../styles/Breakpoints";
 export const HeaderContainer = styled.div`
   grid-area: H;
   position: fixed;
-  padding: 12px;
+  padding: 12px 50px;
   float: left;
   width: 100%;
   z-index: 99;
@@ -14,16 +14,17 @@ export const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-direction: column;
-
-  ${BreakAt(601)} {
-    flex-direction: row;
-  }
+  flex-direction: row;
 `;
 
 export const ContentDescription = styled.div`
   display: flex;
   align-items: center;
+  flex-direction: column;
+
+  ${BreakAt(601)} {
+    flex-direction: row;
+  }
 `;
 
 export const LogoContent = styled.div`
@@ -40,6 +41,7 @@ export const LogoImage = styled(Image)``;
 
 export const HeaderDescription = styled.div`
   margin-left: 32px;
+  display: none;
 
   &:before {
     content: "";
@@ -47,13 +49,17 @@ export const HeaderDescription = styled.div`
     height: 27px;
     background: rgba(255, 255, 255, 0.3);
     position: absolute;
-    left: 150px;
+    left: 190px;
     display: none;
   }
 
   > span {
     color: rgba(255, 255, 255, 0.5);
     line-height: 26px;
+  }
+
+  ${BreakAt(450)} {
+    display: block;
   }
 
   ${BreakAt(601)} {
@@ -106,15 +112,20 @@ export const SearchFieldInput = styled.input`
 export const ContactContent = styled.div`
   margin-right: 18px;
   display: flex;
+  flex-direction: column;
   margin-top: 12px;
 
   ${BreakAt(601)} {
     margin-top: 0;
   }
+
+  ${BreakAt(300)} {
+    flex-direction: row;
+  }
 `;
 
 export const ContentText = styled.span`
-  font-size: 19px;
+  font-size: 16px;
   color: ${(props) => props.theme.colors.white};
 
   transition: all 0.25s ease-in-out;
@@ -122,8 +133,16 @@ export const ContentText = styled.span`
   &:hover {
     color: #e73931;
   }
+
+  ${BreakAt(601)} {
+    font-size: 19px;
+  }
 `;
 
 export const ContentContactElement = styled.div`
-  margin: 0 12px;
+  margin: 5px 20px;
+
+  ${BreakAt(300)} {
+    margin: 0 20px;
+  }
 `;

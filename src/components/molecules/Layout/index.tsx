@@ -33,7 +33,7 @@ const Layout = () => {
         {productsIframeList && productsIframeList.length > 0 && (
           <Carousel title="Ofertas em Reserva" products={productsIframeList} />
         )}
-        <Footer />
+        {/* <Footer /> */}
       </Content>
     </Container>
   );

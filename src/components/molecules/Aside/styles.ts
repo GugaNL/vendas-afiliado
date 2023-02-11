@@ -8,14 +8,14 @@ export const AsideContainer = styled.div.attrs((props: ContainerProps) => ({
   menuIsOpen: props.menuIsOpen
 }))<ContainerProps>`
   grid-area: AS;
-  background-color: ${(props) => props.theme.colors.white};
+  background-color: transparent;
   padding-left: 20px;
   position: relative;
 
   @media (max-width: 600px) {
     padding: 0 7px;
     position: fixed;
-    z-index: 2;
+    z-index: 100;
 
     height: ${(props) => (props.menuIsOpen ? "100vh" : "70px")};
     overflow: hidden; //esconde o que está dentro do container, senão iria exibi-los
@@ -52,7 +52,8 @@ export const Title = styled.h3`
 `;
 
 export const MenuContainer = styled.nav`
-  margin-top: 50px;
+  margin-top: 85px;
+  background: ${(props) => props.theme.colors.white};
   display: flex;
   flex-direction: column;
 `;
@@ -84,6 +85,7 @@ export const ToogleMenu = styled.button`
   color: ${(props) => props.theme.colors.white};
   transition: opacity 0.3s;
   display: none;
+  margin-top: 16px;
 
   &:hover {
     opacity: 0.7;

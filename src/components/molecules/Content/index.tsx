@@ -1,11 +1,11 @@
 import React from "react";
-import {Container} from './styles';
+import {ContentContainer} from './styles';
 
 const Content = ({ children }: any) => {
     return (
-        <Container>
+        <ContentContainer>
             {children}
-        </Container>
+        </ContentContainer>
     )
 }
 
