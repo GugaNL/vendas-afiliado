@@ -1,10 +1,10 @@
 import Layout from "../../molecules/Layout";
-import { Container } from "./styles";
+import { HomeContainer } from "./styles";
 
 export const Home = () => {
   return (
-    <Container>
+    <HomeContainer>
       <Layout />
-    </Container>
+    </HomeContainer>
   );
 };

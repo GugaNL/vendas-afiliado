@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "./styles";
+import { LayoutContainer } from "./styles";
 //Components
 import Aside from "../Aside";
 import Content from "../Content";
@@ -16,7 +16,7 @@ import { productsIframeList, productsVitrineList } from "../../../mocks";
 
 const Layout = () => {
   return (
-    <Container>
+    <LayoutContainer>
       <Header />
       <Aside>
         <SearchBox />
@@ -30,12 +30,12 @@ const Layout = () => {
               <ProductBox key={index} productItem={item} />
             ))}
         </Grid>
-        {productsIframeList && productsIframeList.length > 0 && (
+        {/* {productsIframeList && productsIframeList.length > 0 && (
           <Carousel title="Ofertas em Reserva" products={productsIframeList} />
-        )}
-        {/* <Footer /> */}
+        )} */}
       </Content>
-    </Container>
+      <Footer />
+    </LayoutContainer>
   );
 };
 

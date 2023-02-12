@@ -7,16 +7,16 @@ import styled from "styled-components";
  * CT - Content
  */
 
-export const Container = styled.div`
+export const LayoutContainer = styled.div`
   display: grid;
   grid-template-columns: 250px auto;
   grid-template-rows: 70px auto;
-  grid-template-areas: "AS H" "AS CT";
+  grid-template-areas: "AS H" "AS CT" "F F";
   height: 100vh;
 
   @media (max-width: 600px) {
     grid-template-columns: 100%;
     grid-template-rows: 70px auto;
-    grid-template-areas: "H" "CT";
+    grid-template-areas: "H" "CT" "F";
   }
 `;

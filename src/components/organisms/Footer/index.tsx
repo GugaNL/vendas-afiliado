@@ -1,14 +1,18 @@
-import {
-  FaFacebookF,
-  FaInstagram,
-} from "react-icons/fa";
+import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { MdOutlineMail } from "react-icons/md";
 import { Grid } from "../../atoms/Grid";
-import { ContactContent, Container, FooterLink, Heading, IconContainer, Root } from "./styles";
+import {
+  FooterContainer,
+  ContactContent,
+  Container,
+  FooterLink,
+  Heading,
+  IconContainer,
+} from "./styles";
 
 export const Footer = () => {
   return (
-    <Root>
+    <FooterContainer>
       <Container>
         <Grid md={3}>
           <div>
@@ -54,6 +58,6 @@ export const Footer = () => {
           </div>
         </Grid>
       </Container>
-    </Root>
+    </FooterContainer>
   );
 };

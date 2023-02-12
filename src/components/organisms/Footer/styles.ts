@@ -2,12 +2,12 @@ import styled from "styled-components";
 import Link from "next/link";
 import { BreakAt, BreakpointSize } from "../../../styles/Breakpoints";
 
-export const Root = styled.div`
+export const FooterContainer = styled.div`
+  grid-area: F;
   background-color: #2a2a2a;
   color: ${(props) => props.theme.colors.lightGray};
   padding: 40px 0;
-  position: absolute;
-  width: 100vw;
+  //position: absolute;
   left: 0;
   right: 0;
 
