@@ -52,7 +52,7 @@ export const Title = styled.h3`
 `;
 
 export const MenuContainer = styled.nav`
-  margin-top: 85px;
+  margin-top: 50px;
   background: ${(props) => props.theme.colors.white};
   display: flex;
   flex-direction: column;
@@ -83,13 +83,10 @@ export const ToogleMenu = styled.button`
   font-size: 22px;
   background-color: ${(props) => props.theme.colors.secondary};
   color: ${(props) => props.theme.colors.white};
-  transition: opacity 0.3s;
   display: none;
   margin-top: 16px;
+  border: none;
 
-  &:hover {
-    opacity: 0.7;
-  }
 
   @media (max-width: 600px) {
     display: flex;

@@ -13,6 +13,7 @@ export const LayoutContainer = styled.div`
   grid-template-rows: 70px auto;
   grid-template-areas: "H H" "AS CT" "F F";
   height: 100vh;
+  width: fit-content;
 
   @media (max-width: 600px) {
     grid-template-columns: 100%;

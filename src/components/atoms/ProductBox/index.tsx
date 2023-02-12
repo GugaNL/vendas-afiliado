@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {
-  Container,
+  ProductBoxContainer,
   ContainerDiscount,
   ContentDiscount,
   ContentDiscountInfo,
@@ -19,7 +19,7 @@ import {
 
 export const ProductBox = ({ productItem }: any) => {
   return (
-    <Container>
+    <ProductBoxContainer>
       <ContentImage>
         <Link href={productItem?.externalLink}>
           <ContentImageCover />
@@ -49,6 +49,6 @@ export const ProductBox = ({ productItem }: any) => {
           <span>{productItem?.obs2}</span>
         </Footer>
       </ProductContentInfo>
-    </Container>
+    </ProductBoxContainer>
   );
 };

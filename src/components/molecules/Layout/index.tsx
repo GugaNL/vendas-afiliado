@@ -23,7 +23,7 @@ const Layout = () => {
         <FilterCategory />
       </Aside>
       <Content>
-        <Grid sm={1} md={2} lg={3} xl={4}>
+        <Grid sm={2} md={2} lg={3} xl={4}>
           {productsVitrineList &&
             productsVitrineList.length &&
             productsVitrineList.map((item, index) => (

@@ -7,7 +7,6 @@ export const FooterContainer = styled.div`
   background-color: #2a2a2a;
   color: ${(props) => props.theme.colors.lightGray};
   padding: 40px 0;
-  //position: absolute;
   left: 0;
   right: 0;
 
