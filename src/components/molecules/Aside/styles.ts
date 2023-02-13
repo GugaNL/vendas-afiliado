@@ -53,11 +53,13 @@ export const Title = styled.h3`
   margin-left: 10px;
 `;
 
-export const MenuContainer = styled.nav`
+export const MenuContainer = styled.div`
   margin-top: 50px;
   background: ${(props) => props.theme.colors.white};
   display: flex;
   flex-direction: column;
+  margin-left: -7px;
+  height: 100vh;
 `;
 
 export const MenuItemLink = styled.a`
