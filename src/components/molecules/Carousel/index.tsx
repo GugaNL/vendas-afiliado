@@ -5,7 +5,8 @@ import { BreakpointSize } from "../../../styles/Breakpoints";
 import { CardProduct } from "../../atoms/CardProduct";
 
 const breakPoints = [
-  { width: BreakpointSize.sm, itemsToShow: 2 },
+  { width: 400, itemsToShow: 2 },
+  { width: BreakpointSize.sm, itemsToShow: 3 },
   { width: BreakpointSize.md, itemsToShow: 4 },
   { width: BreakpointSize.lg, itemsToShow: 4 },
   { width: BreakpointSize.xl, itemsToShow: 5 },

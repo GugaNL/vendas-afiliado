@@ -58,6 +58,18 @@ export const CarouselLib = styled(Carousel).attrs(
     box-shadow: none;
     display: none;
 
+    &:hover {
+      background-color: inherit !important;
+      color: inherit !important;
+      box-shadow: inherit !important;
+    }
+
+    &:focus {
+      background-color: inherit !important;
+      color: inherit !important;
+      box-shadow: inherit !important;
+    }
+
     ${BreakAt(370)} {
       display: block;
     }

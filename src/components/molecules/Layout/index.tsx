@@ -30,9 +30,9 @@ const Layout = () => {
               <ProductBox key={index} productItem={item} />
             ))}
         </Grid>
-        {/* {productsIframeList && productsIframeList.length > 0 && (
+        {productsIframeList && productsIframeList.length > 0 && (
           <Carousel title="Ofertas em Reserva" products={productsIframeList} />
-        )} */}
+        )}
       </Content>
       <Footer />
     </LayoutContainer>
