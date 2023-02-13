@@ -6,7 +6,7 @@ import { BreakAt, BreakpointSize } from "../../../styles/Breakpoints";
 export const HeaderContainer = styled.div`
   grid-area: H;
   position: fixed;
-  padding: 12px 50px;
+  padding: 12px 30px;
   float: left;
   width: 100%;
   z-index: 99;
@@ -21,9 +21,14 @@ export const ContentDescription = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-left: 40px;
 
   ${BreakAt(601)} {
     flex-direction: row;
+  }
+
+  ${BreakAt(450)} {
+    margin-left: 20px;
   }
 `;
 
@@ -56,6 +61,7 @@ export const HeaderDescription = styled.div`
   > span {
     color: rgba(255, 255, 255, 0.5);
     line-height: 26px;
+    font-size: 14px;
   }
 
   ${BreakAt(450)} {
@@ -119,7 +125,7 @@ export const ContactContent = styled.div`
     margin-top: 0;
   }
 
-  ${BreakAt(300)} {
+  ${BreakAt(340)} {
     flex-direction: row;
   }
 `;
@@ -135,14 +141,14 @@ export const ContentText = styled.span`
   }
 
   ${BreakAt(601)} {
-    font-size: 19px;
+    font-size: 18px;
   }
 `;
 
 export const ContentContactElement = styled.div`
   margin: 5px 20px;
 
-  ${BreakAt(300)} {
+  ${BreakAt(340)} {
     margin: 0 20px;
   }
 `;

@@ -1,4 +1,6 @@
 import styled, { css } from "styled-components";
+import { BreakAt, BreakpointSize } from "../../../styles/Breakpoints";
+
 
 type ContainerProps = {
   menuIsOpen: boolean;
@@ -86,6 +88,10 @@ export const ToogleMenu = styled.button`
   display: none;
   margin-top: 16px;
   border: none;
+
+  ${BreakAt(340)} {
+    margin-top: 0;
+  }
 
 
   @media (max-width: 600px) {
