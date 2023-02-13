@@ -60,6 +60,15 @@ export const MenuContainer = styled.div`
   flex-direction: column;
   margin-left: -7px;
   height: 100vh;
+
+  @media (max-width: 450px) {
+    margin-top: 5px !important;
+  }
+
+  @media (max-width: 600px) {
+    margin-top: 32px;
+    background: #F5F5F5;
+  }
 `;
 
 export const MenuItemLink = styled.a`
