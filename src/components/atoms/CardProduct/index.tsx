@@ -12,7 +12,7 @@ export const CardProduct = ({ frameProduct }: any) => {
 
     // <IframeResizer
     //   sandbox="allow-popups allow-scripts allow-modals allow-forms allow-same-origin"
-    //   style={{ width: '1px', minWidth: '100%', minHeight: '100%'}}
+    //   style={{ width: '120px', height: '240px', minWidth: '100%', minHeight: '100%', border: 'none'}}
     //   src={frameProduct?.frameUrl}
     // ></IframeResizer> 
   );
