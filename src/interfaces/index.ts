@@ -38,12 +38,26 @@ export interface Breackpoints {
   itemsToShow: number;
 }
 
-export interface LocationData {
-  logradouro?: string;
-  complemento?: string;
-  bairro?: string;
-  localidade: string;
-  uf: string;
+export interface IProduct {
+  id: number | null;
+  title: string;
+  brand: string;
+  store: string;
+  imageFilename: string;
+  imagePath: string;
+  imageMimetype: string;
+  linkAfiliate: string;
+  categoryId: string;
+  oldPrice: string;
+  newPrice: string;
+  discount: string;
+  obs1: string;
+  obs2: string;  
+}
+
+export interface ICategory {
+  id: number;
+  name: string;
 }
 
 export interface Category {

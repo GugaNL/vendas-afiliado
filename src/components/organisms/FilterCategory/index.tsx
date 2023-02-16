@@ -1,3 +1,4 @@
+import { ICategory } from "@/interfaces";
 import {
   CategoryList,
   CategoryListItem,
@@ -5,10 +6,11 @@ import {
   CategoryItemLink,
 } from "./styles";
 
-//mock
-import { categories } from "../../../mocks";
+type FilterCategoryProps = {
+  categories: Array<ICategory>
+}
 
-export const FilterCategory = () => {
+export const FilterCategory = ({ categories }: FilterCategoryProps) => {
   return (
     <Container>
       <h3>Categorias</h3>
