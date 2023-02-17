@@ -7,13 +7,13 @@ export const CardProduct = ({ frameProduct }: any) => {
       sandbox="allow-popups allow-scripts allow-modals allow-forms allow-same-origin"
       scrolling="no"
       frameBorder="0"
-      src={frameProduct?.frameUrl}
+      src={frameProduct?.iframeUrl}
     ></ProductIframe> 
 
     // <IframeResizer
     //   sandbox="allow-popups allow-scripts allow-modals allow-forms allow-same-origin"
     //   style={{ width: '120px', height: '240px', minWidth: '100%', minHeight: '100%', border: 'none'}}
-    //   src={frameProduct?.frameUrl}
+    //   src={frameProduct?.iframeUrl}
     // ></IframeResizer> 
   );
 };

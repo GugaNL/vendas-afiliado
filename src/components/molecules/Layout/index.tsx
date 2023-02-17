@@ -10,15 +10,14 @@ import { ProductBox } from "../../atoms/ProductBox";
 import { Header } from "../../organisms/Header";
 import { Carousel } from "../Carousel";
 import { Footer } from "../../organisms/Footer";
-import { listProducts } from "../../../pages/api/productAPI";
+//Services APIs
+import { listProducts, listProductsIframe } from "../../../pages/api/productAPI";
 import { listCategories } from "../../../pages/api/categorytAPI";
-
-//Mock
-import { productsIframeList } from "../../../mocks";
 
 const Layout = () => {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
+  const [iframeProducts, setIframeProducts] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
 
   const limit = 5;
@@ -47,9 +46,24 @@ const Layout = () => {
     }
   }, []);
 
+  const getIframeProducts = useCallback(async (page = 1, limit = 5) => {
+    //setLoading(true);
+    const response = await listProductsIframe(page, limit);
+
+    if (response && response.success) {
+      //setLoading(false);
+      const { products = [] } = response;
+      setIframeProducts(products);
+    } else {
+      //setLoading(false);
+    }
+  }, []);
+
+
   useEffect(() => {
     getCategories();
     getProducts();
+    getIframeProducts();
   }, []);
 
   function handlePageClick({ selected: selectedPage }: any) {
@@ -86,8 +100,8 @@ const Layout = () => {
           disabledClassName={"pagination__link--disabled"}
           activeClassName={"pagination__link--active"}
         />
-        {productsIframeList && productsIframeList.length > 0 && (
-          <Carousel title="Ofertas em Reserva" products={productsIframeList} />
+        {iframeProducts && iframeProducts.length > 0 && (
+          <Carousel title="Ofertas em destaque" iframeProducts={iframeProducts} />
         )}
       </Content>
       <Footer />

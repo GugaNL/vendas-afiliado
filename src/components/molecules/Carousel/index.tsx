@@ -12,7 +12,7 @@ const breakPoints = [
   { width: BreakpointSize.xl, itemsToShow: 5 },
 ];
 
-export const Carousel = ({ title, products }: any) => {
+export const Carousel = ({ title, iframeProducts }: any) => {
   const carouselRef = useRef<any>(null);
 
   const onNextStart = (currentItem: ItemObject, nextItem: ItemObject) => {
@@ -22,7 +22,7 @@ export const Carousel = ({ title, products }: any) => {
   };
   const onPrevStart = (currentItem: ItemObject, nextItem: ItemObject) => {
     if (currentItem.index === nextItem.index) {
-      carouselRef.current.goTo(products.length);
+      carouselRef.current.goTo(iframeProducts.length);
     }
   };
 
@@ -38,7 +38,7 @@ export const Carousel = ({ title, products }: any) => {
           onNextStart={onNextStart}
           disableArrowsOnEnd={false}
         >
-          {products.map((item: any, index: number) => (
+          {iframeProducts.map((item: any, index: number) => (
               <CardProduct key={index} frameProduct={item} />
           ))}
         </CarouselLib>
