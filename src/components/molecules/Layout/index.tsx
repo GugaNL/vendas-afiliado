@@ -11,7 +11,10 @@ import { Header } from "../../organisms/Header";
 import { Carousel } from "../Carousel";
 import { Footer } from "../../organisms/Footer";
 //Services APIs
-import { listProducts, listProductsIframe } from "../../../pages/api/productAPI";
+import {
+  listProducts,
+  listProductsIframe,
+} from "../../../pages/api/productAPI";
 import { listCategories } from "../../../pages/api/categorytAPI";
 
 const Layout = () => {
@@ -34,36 +37,41 @@ const Layout = () => {
 
   const getProducts = useCallback(async (page = 1, limit = 5) => {
     //setLoading(true);
-    const response = await listProducts(page, limit);
+    const responseProducts = await listProducts(page, limit);
 
-    if (response && response.success) {
+    if (responseProducts && responseProducts.success) {
       //setLoading(false);
-      const { products: { rows = [], count = 0 } = {} } = response;
+      const { products: { rows = [], count = 0 } = {} } = responseProducts;
       setProducts(rows);
       setTotalProducts(count);
+
+      const idsToExclude = rows.map((item: any) => {
+        return item.id;
+      });
+
+      getIframeProducts(1, 10, idsToExclude);
     } else {
       //setLoading(false);
     }
   }, []);
 
-  const getIframeProducts = useCallback(async (page = 1, limit = 5) => {
-    //setLoading(true);
-    const response = await listProductsIframe(page, limit);
+  const getIframeProducts = useCallback(
+    async (page = 1, limit = 5, idsToExclude = []) => {
+      const response = await listProductsIframe(page, limit, idsToExclude);
 
-    if (response && response.success) {
-      //setLoading(false);
-      const { products = [] } = response;
-      setIframeProducts(products);
-    } else {
-      //setLoading(false);
-    }
-  }, []);
-
+      if (response && response.success) {
+        const { products = [] } = response;
+        setIframeProducts(products);
+      } else {
+        //error msg
+      }
+    },
+    []
+  );
 
   useEffect(() => {
     getCategories();
     getProducts();
-    getIframeProducts();
   }, []);
 
   function handlePageClick({ selected: selectedPage }: any) {
@@ -101,7 +109,10 @@ const Layout = () => {
           activeClassName={"pagination__link--active"}
         />
         {iframeProducts && iframeProducts.length > 0 && (
-          <Carousel title="Ofertas em destaque" iframeProducts={iframeProducts} />
+          <Carousel
+            title="Ofertas em destaque"
+            iframeProducts={iframeProducts}
+          />
         )}
       </Content>
       <Footer />

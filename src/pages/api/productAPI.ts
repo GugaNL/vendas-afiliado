@@ -17,10 +17,12 @@ export const listProducts = async (page: number, limit: number) => {
   }
 };
 
-export const listProductsIframe = async (page: number, limit: number) => {
+export const listProductsIframe = async (page: number, limit: number, idsToExclude: Array<number>) => {
   try {
-    const { data }: AxiosResponse = await api.get<IProduct>(
-      `produto/lista-iframe?page=${page}&limit=${limit}`
+    const { data }: AxiosResponse = await api.post<IProduct>(
+      `produto/lista-iframe?page=${page}&limit=${limit}`, {
+        idsToExclude
+      }
     );
     return data;
   } catch (error) {
