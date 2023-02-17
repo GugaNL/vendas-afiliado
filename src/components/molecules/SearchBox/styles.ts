@@ -15,7 +15,7 @@ export const Container = styled.div`
   overflow: hidden;
 `;
 
-export const FormSearch = styled.form`
+export const FormSearch = styled.div`
   display: flex;
 
   > button {

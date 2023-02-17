@@ -14,6 +14,7 @@ import { Footer } from "../../organisms/Footer";
 import {
   listProducts,
   listProductsIframe,
+  listProductsByTitle,
 } from "../../../pages/api/productAPI";
 import { listCategories } from "../../../pages/api/categorytAPI";
 
@@ -79,11 +80,24 @@ const Layout = () => {
     window.scrollTo(0, 0);
   }
 
+  const getProductsByTitle = useCallback(async (title: string) => {
+    const response = await listProductsByTitle(1, limit, title);
+    if (response && response.success) {
+      const { products: { rows = [], count = 0 } = {} } = response;
+      setProducts(rows);
+      setTotalProducts(count);
+    } else {
+      //error msg
+    }
+  }, []);
+
   return (
     <LayoutContainer>
       <Header />
       <Aside>
-        <SearchBox />
+        <SearchBox
+          getProductsByTitle={(title: string) => getProductsByTitle(title)}
+        />
         {categories && categories.length > 0 && (
           <FilterCategory categories={categories} />
         )}

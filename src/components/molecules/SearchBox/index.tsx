@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Container, FormSearch, SearchFieldInput } from "./styles";
 
-export const SearchBox = () => {
+export const SearchBox = ({ getProductsByTitle }: any) => {
   const [searchTerm, setsearchTerm] = useState("");
 
   return (
@@ -14,7 +14,9 @@ export const SearchBox = () => {
           value={searchTerm}
           onChange={(e) => setsearchTerm(e.target.value)}
         />
-        <button type="submit">Pesquisar</button>
+        <button onClick={() => getProductsByTitle(searchTerm)}>
+          Pesquisar
+        </button>
       </FormSearch>
     </Container>
   );

@@ -29,3 +29,16 @@ export const listProductsIframe = async (page: number, limit: number, idsToExclu
     return error;
   }
 };
+
+export const listProductsByTitle = async (page: number, limit: number, title: string) => {
+  try {
+    const { data }: AxiosResponse = await api.post<IProduct>(
+      `produto/lista-titulo?page=${page}&limit=${limit}`, {
+        title
+      }
+    );
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
