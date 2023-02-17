@@ -1,3 +1,4 @@
+import { IProduct } from "@/interfaces";
 import Link from "next/link";
 import {
   ProductBoxContainer,
@@ -21,26 +22,36 @@ export const ProductBox = ({ productItem }: any) => {
   return (
     <ProductBoxContainer>
       <ContentImage>
-        <Link href={productItem?.externalLink}>
+        <Link href={productItem?.linkAfiliate}>
           <ContentImageCover />
-          <ProductImage src={productItem?.imageSrc} alt="" />
+          {/* <ProductImage src={"http://localhost:5000/api/" + productItem?.imagePath} alt="" /> */}
         </Link>
       </ContentImage>
       <ProductContentInfo>
-        <ProductLinkTitle href={productItem?.externalLink}>
+        <ProductLinkTitle href={productItem?.linkAfiliate}>
           <ProductTitle>{productItem?.title}</ProductTitle>
         </ProductLinkTitle>
-        <ContainerDiscount>
-          <ContentDiscount>
-            <DiscountText>{productItem?.discount}% off</DiscountText>
-          </ContentDiscount>
-          <ContentDiscountInfo>
-            <span>Oferta do dia</span>
-          </ContentDiscountInfo>
-        </ContainerDiscount>
+
+        {productItem?.discount !== 0 && (
+          <ContainerDiscount>
+            <ContentDiscount>
+              <DiscountText>{productItem?.discount}% off</DiscountText>
+            </ContentDiscount>
+            <ContentDiscountInfo>
+              <span>Oferta do dia</span>
+            </ContentDiscountInfo>
+          </ContainerDiscount>
+        )}
+
         <ContentPrices>
-          <NewPrice>R$ {productItem?.newPrice}</NewPrice>
-          <OldPrice>R$ {productItem?.oldPrice}</OldPrice>
+          {productItem?.newPrice !== "0.00" ? (
+            <>
+              <NewPrice>R$ {productItem?.newPrice}</NewPrice>
+              <OldPrice>R$ {productItem?.oldPrice}</OldPrice>
+            </>
+          ) : (
+            <NewPrice>R$ {productItem?.oldPrice}</NewPrice>
+          )}
         </ContentPrices>
         <Footer>
           <span>

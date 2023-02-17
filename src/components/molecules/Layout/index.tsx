@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { LayoutContainer } from "./styles";
+import { LayoutContainer, PaginationLib } from "./styles";
 //Components
 import Aside from "../Aside";
 import Content from "../Content";
@@ -14,7 +14,7 @@ import { listProducts } from "../../../pages/api/productAPI";
 import { listCategories } from "../../../pages/api/categorytAPI";
 
 //Mock
-import { productsIframeList, productsVitrineList } from "../../../mocks";
+import { productsIframeList } from "../../../mocks";
 
 const Layout = () => {
   const [categories, setCategories] = useState([]);
@@ -23,7 +23,6 @@ const Layout = () => {
 
   const limit = 5;
   const pageCount = Math.ceil(totalProducts / limit);
-
 
   const getCategories = useCallback(async () => {
     const response = await listCategories();
@@ -34,36 +33,29 @@ const Layout = () => {
     }
   }, []);
 
-  
-  const getProducts = async (page = 1, limit = 5) => {
+  const getProducts = useCallback(async (page = 1, limit = 5) => {
     //setLoading(true);
     const response = await listProducts(page, limit);
-    const { data: responseListProducts = {} } = response;
 
-    if (responseListProducts && responseListProducts.success) {
+    if (response && response.success) {
       //setLoading(false);
-      const { products: { rows = [], count = 0 } = {} } = responseListProducts;
+      const { products: { rows = [], count = 0 } = {} } = response;
       setProducts(rows);
       setTotalProducts(count);
     } else {
       //setLoading(false);
-      // toast.error("Falha ao listar produtos", {
-      //   position: "top-right",
-      //   autoClose: 2000,
-      //   hideProgressBar: true,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: false,
-      //   progress: undefined,
-      // });
     }
-  };
-
+  }, []);
 
   useEffect(() => {
     getCategories();
     getProducts();
   }, []);
+
+  function handlePageClick({ selected: selectedPage }: any) {
+    getProducts(selectedPage + 1, limit);
+    window.scrollTo(0, 0);
+  }
 
   return (
     <LayoutContainer>
@@ -76,12 +68,24 @@ const Layout = () => {
       </Aside>
       <Content>
         <Grid sm={2} md={2} lg={3} xl={4}>
-          {productsVitrineList &&
-            productsVitrineList.length &&
-            productsVitrineList.map((item, index) => (
+          {products &&
+            products.length > 0 &&
+            products.map((item, index) => (
               <ProductBox key={index} productItem={item} />
             ))}
         </Grid>
+        <PaginationLib
+          breakLabel="..."
+          pageRangeDisplayed={5}
+          previousLabel={"← Anterior"}
+          nextLabel={"Próximo →"}
+          pageCount={pageCount}
+          onPageChange={handlePageClick}
+          previousLinkClassName={"pagination__link"}
+          nextLinkClassName={"pagination__link"}
+          disabledClassName={"pagination__link--disabled"}
+          activeClassName={"pagination__link--active"}
+        />
         {productsIframeList && productsIframeList.length > 0 && (
           <Carousel title="Ofertas em Reserva" products={productsIframeList} />
         )}

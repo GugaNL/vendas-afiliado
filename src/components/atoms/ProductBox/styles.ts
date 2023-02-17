@@ -53,10 +53,10 @@ export const ProductTitle = styled.span`
   font-size: 15px;
   line-height: 20px;
   color: #0f1111;
-  transition: all .2s;
+  transition: all 0.2s;
 
   &:hover {
-    color: ${props => props.theme.colors.secondary}
+    color: ${(props) => props.theme.colors.secondary};
   }
 `;
 
@@ -100,6 +100,10 @@ export const ContentPrices = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 4px;
+
+  > span {
+    font-weight: 700;
+  }
 `;
 
 export const NewPrice = styled.span`
@@ -115,6 +119,9 @@ export const OldPrice = styled.span`
 `;
 
 export const Footer = styled.div`
+  display: flex;
+  flex-direction: column;
+
   > span {
     color: #565959;
     font-size: 13px;

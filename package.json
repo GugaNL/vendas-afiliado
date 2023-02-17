@@ -23,6 +23,7 @@
     "react-elastic-carousel": "^0.11.5",
     "react-icons": "^4.7.1",
     "react-loader-spinner": "^5.3.4",
+    "react-paginate": "^8.1.4",
     "react-stars": "^2.2.5",
     "typescript": "4.9.5"
   },

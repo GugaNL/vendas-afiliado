@@ -47,12 +47,15 @@ export interface IProduct {
   imagePath: string;
   imageMimetype: string;
   linkAfiliate: string;
-  categoryId: string;
+  categoryId: number;
+  data?: string;
   oldPrice: string;
   newPrice: string;
-  discount: string;
+  discount: number;
   obs1: string;
-  obs2: string;  
+  obs2: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface ICategory {
