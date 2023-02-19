@@ -21,6 +21,7 @@ import { listCategories } from "../../../pages/api/categorytAPI";
 const Layout = () => {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
+  const [filteredTerm, setFilteredTerm] = useState("");
   const [iframeProducts, setIframeProducts] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
 
@@ -38,6 +39,9 @@ const Layout = () => {
 
   const getProducts = useCallback(async (page = 1, limit = 5) => {
     //setLoading(true);
+    if (filteredTerm) {
+      setFilteredTerm("");
+    }
     const responseProducts = await listProducts(page, limit);
 
     if (responseProducts && responseProducts.success) {
@@ -53,6 +57,24 @@ const Layout = () => {
       getIframeProducts(1, 10, idsToExclude);
     } else {
       //setLoading(false);
+    }
+  }, []);
+
+  const getProductsByTitle = useCallback(async (page = 1, limit = 5, title: string) => {
+    setFilteredTerm(title);
+    const response = await listProductsByTitle(page, limit, title);
+    if (response && response.success) {
+      const { products: { rows = [], count = 0 } = {} } = response;
+      setProducts(rows);
+      setTotalProducts(count);
+
+      const idsToExclude = rows.map((item: any) => {
+        return item.id;
+      });
+
+      getIframeProducts(1, 10, idsToExclude);
+    } else {
+      //error msg
     }
   }, []);
 
@@ -76,27 +98,21 @@ const Layout = () => {
   }, []);
 
   function handlePageClick({ selected: selectedPage }: any) {
-    getProducts(selectedPage + 1, limit);
+    if (!filteredTerm) {
+      getProducts(selectedPage + 1, limit);
+    } else {
+      getProductsByTitle(selectedPage + 1, limit, filteredTerm);
+    }
     window.scrollTo(0, 0);
   }
-
-  const getProductsByTitle = useCallback(async (title: string) => {
-    const response = await listProductsByTitle(1, limit, title);
-    if (response && response.success) {
-      const { products: { rows = [], count = 0 } = {} } = response;
-      setProducts(rows);
-      setTotalProducts(count);
-    } else {
-      //error msg
-    }
-  }, []);
 
   return (
     <LayoutContainer>
       <Header />
       <Aside>
         <SearchBox
-          getProductsByTitle={(title: string) => getProductsByTitle(title)}
+          getProductsByTitle={(title: string) => getProductsByTitle(1, limit, title)}
+          getProducts={() => getProducts(1, limit)}
         />
         {categories && categories.length > 0 && (
           <FilterCategory categories={categories} />
