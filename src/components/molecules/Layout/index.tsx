@@ -24,6 +24,7 @@ const Layout = () => {
   const [filteredTerm, setFilteredTerm] = useState("");
   const [iframeProducts, setIframeProducts] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
+  const [page, setPage] = useState(0);
 
   const limit = 5;
   const pageCount = Math.ceil(totalProducts / limit);
@@ -60,23 +61,26 @@ const Layout = () => {
     }
   }, []);
 
-  const getProductsByTitle = useCallback(async (page = 1, limit = 5, title: string) => {
-    setFilteredTerm(title);
-    const response = await listProductsByTitle(page, limit, title);
-    if (response && response.success) {
-      const { products: { rows = [], count = 0 } = {} } = response;
-      setProducts(rows);
-      setTotalProducts(count);
+  const getProductsByTitle = useCallback(
+    async (page = 1, limit = 5, title: string) => {
+      setFilteredTerm(title);
+      const response = await listProductsByTitle(page, limit, title);
+      if (response && response.success) {
+        const { products: { rows = [], count = 0 } = {} } = response;
+        setProducts(rows);
+        setTotalProducts(count);
 
-      const idsToExclude = rows.map((item: any) => {
-        return item.id;
-      });
+        const idsToExclude = rows.map((item: any) => {
+          return item.id;
+        });
 
-      getIframeProducts(1, 10, idsToExclude);
-    } else {
-      //error msg
-    }
-  }, []);
+        getIframeProducts(1, 10, idsToExclude);
+      } else {
+        //error msg
+      }
+    },
+    []
+  );
 
   const getIframeProducts = useCallback(
     async (page = 1, limit = 5, idsToExclude = []) => {
@@ -98,6 +102,7 @@ const Layout = () => {
   }, []);
 
   function handlePageClick({ selected: selectedPage }: any) {
+    setPage(selectedPage);
     if (!filteredTerm) {
       getProducts(selectedPage + 1, limit);
     } else {
@@ -106,13 +111,26 @@ const Layout = () => {
     window.scrollTo(0, 0);
   }
 
+  const clearActivePageAndFetch = (title = "", isFiltered = false) => {
+    setPage(0);
+
+    if (isFiltered) {
+      getProductsByTitle(1, limit, title);
+    } else {
+      setFilteredTerm("");
+      getProducts(1, limit);
+    }
+  };
+
   return (
     <LayoutContainer>
       <Header />
       <Aside>
         <SearchBox
-          getProductsByTitle={(title: string) => getProductsByTitle(1, limit, title)}
-          getProducts={() => getProducts(1, limit)}
+          getProductsByTitle={(title: string) =>
+            clearActivePageAndFetch(title, true)
+          }
+          getProducts={() => clearActivePageAndFetch("", false)}
         />
         {categories && categories.length > 0 && (
           <FilterCategory categories={categories} />
@@ -132,6 +150,7 @@ const Layout = () => {
           previousLabel={"← Anterior"}
           nextLabel={"Próximo →"}
           pageCount={pageCount}
+          forcePage={page}
           onPageChange={handlePageClick}
           previousLinkClassName={"pagination__link"}
           nextLinkClassName={"pagination__link"}
