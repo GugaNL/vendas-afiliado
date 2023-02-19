@@ -14,8 +14,8 @@ import {
 
 export const SearchBox = ({ getProducts, getProductsByTitle }: any) => {
   const [searchTerm, setsearchTerm] = useState("");
+  const [searchedTerm, setSearchedTerm] = useState("");
   const [isVisibleClearBtn, setIsVisibleClearBtn] = useState(false);
-  const [isActiveSearch, setIsActiveSearch] = useState(false);
 
   useEffect(() => {
     if (searchTerm) {
@@ -26,13 +26,13 @@ export const SearchBox = ({ getProducts, getProductsByTitle }: any) => {
   }, [searchTerm]);
 
   const search = () => {
-    setIsActiveSearch(true);
+    setSearchedTerm(searchTerm);
     getProductsByTitle(searchTerm);
   };
 
   const finalClearSearch = () => {
     setsearchTerm("");
-    setIsActiveSearch(false);
+    setSearchedTerm("");
     getProducts();
   }
 
@@ -53,10 +53,10 @@ export const SearchBox = ({ getProducts, getProductsByTitle }: any) => {
       </FormSearch>
       <SearchBtn onClick={() => search()}>Pesquisar</SearchBtn>
 
-      {isActiveSearch && (
+      {searchedTerm && (
         <ClearSearchContent>
           <SearchTermText>
-            Resultados para <b>{searchTerm}</b>
+            Resultados para <b>{searchedTerm}</b>
           </SearchTermText>
           <ClearSearchBtn onClick={() => finalClearSearch()}>
             <FaWindowClose />
