@@ -15,6 +15,7 @@ import {
   listProducts,
   listProductsIframe,
   listProductsByTitle,
+  listProductsByCategory,
 } from "../../../pages/api/productAPI";
 import { listCategories } from "../../../pages/api/categorytAPI";
 
@@ -26,7 +27,7 @@ const Layout = () => {
   const [totalProducts, setTotalProducts] = useState(0);
   const [page, setPage] = useState(0);
 
-  const limit = 5;
+  const limit = 12;
   const pageCount = Math.ceil(totalProducts / limit);
 
   const getCategories = useCallback(async () => {
@@ -98,7 +99,7 @@ const Layout = () => {
 
   useEffect(() => {
     getCategories();
-    getProducts();
+    getProducts(1, limit);
   }, []);
 
   function handlePageClick({ selected: selectedPage }: any) {
@@ -122,6 +123,11 @@ const Layout = () => {
     }
   };
 
+  const clearActivePageAndFetchByCategory = (categoryId: number) => {
+    setPage(0);
+    listProductsByCategory(1, limit, categoryId);
+  };
+
   return (
     <LayoutContainer>
       <Header />
@@ -133,7 +139,12 @@ const Layout = () => {
           getProducts={() => clearActivePageAndFetch("", false)}
         />
         {categories && categories.length > 0 && (
-          <FilterCategory categories={categories} />
+          <FilterCategory
+            categories={categories}
+            getProductsByCategory={(categoryId: number) =>
+              clearActivePageAndFetchByCategory(categoryId)
+            }
+          />
         )}
       </Aside>
       <Content>

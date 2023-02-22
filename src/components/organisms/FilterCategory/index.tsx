@@ -7,10 +7,16 @@ import {
 } from "./styles";
 
 type FilterCategoryProps = {
-  categories: Array<ICategory>
+  categories: Array<ICategory>,
+  getProductsByCategory: any
 }
 
-export const FilterCategory = ({ categories }: FilterCategoryProps) => {
+export const FilterCategory = ({ categories, getProductsByCategory }: FilterCategoryProps) => {
+
+  const search = (categorySelected: number) => {
+    getProductsByCategory(categorySelected);
+  };
+
   return (
     <Container>
       <h3>Categorias</h3>
@@ -19,7 +25,7 @@ export const FilterCategory = ({ categories }: FilterCategoryProps) => {
           categories.length &&
           categories.map((item: any, index: number) => (
             <CategoryListItem key={index}>
-              <CategoryItemLink href="#">{item?.name}</CategoryItemLink>
+              <CategoryItemLink href="javascript:void(0)" onClick={() => search(item.id)}>{item?.name}</CategoryItemLink>
             </CategoryListItem>
           ))}
       </CategoryList>

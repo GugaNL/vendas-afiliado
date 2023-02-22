@@ -16,17 +16,24 @@ import {
   ProductImage,
   ProductLinkTitle,
   ProductTitle,
+  ImageProductUrl,
+  ImageProductUrlSec,
 } from "./styles";
 
 export const ProductBox = ({ productItem }: any) => {
   return (
     <ProductBoxContainer>
-      <ContentImage>
-        <Link href={productItem?.linkAfiliate}>
-          <ContentImageCover />
-          {/* <ProductImage src={"http://localhost:5000/api/" + productItem?.imagePath} alt="" /> */}
-        </Link>
-      </ContentImage>
+      {productItem?.imgUrlTag1 &&
+        productItem?.imgUrlTag2 &&
+        productItem?.imgUrlTag3 && (
+          <ContentImage>
+            <Link href={productItem?.imgUrlTag1} target="_blank">
+              <ImageProductUrl src={productItem?.imgUrlTag2} alt="" />
+            </Link>
+            <ImageProductUrlSec src={productItem?.imgUrlTag3} width="1" height="1" alt="" />
+          </ContentImage>
+        )}
+
       <ProductContentInfo>
         <ProductLinkTitle href={productItem?.linkAfiliate}>
           <ProductTitle>{productItem?.title}</ProductTitle>
@@ -43,16 +50,19 @@ export const ProductBox = ({ productItem }: any) => {
           </ContainerDiscount>
         )}
 
-        <ContentPrices>
-          {productItem?.newPrice !== "0.00" ? (
-            <>
-              <NewPrice>R$ {productItem?.newPrice}</NewPrice>
-              <OldPrice>R$ {productItem?.oldPrice}</OldPrice>
-            </>
-          ) : (
-            <NewPrice>R$ {productItem?.oldPrice}</NewPrice>
-          )}
-        </ContentPrices>
+        {productItem?.oldPrice !== "0.00" && (
+          <ContentPrices>
+            {productItem?.newPrice !== "0.00" ? (
+              <>
+                <NewPrice>R$ {productItem?.newPrice}</NewPrice>
+                <OldPrice>R$ {productItem?.oldPrice}</OldPrice>
+              </>
+            ) : (
+              <NewPrice>R$ {productItem?.oldPrice}</NewPrice>
+            )}
+          </ContentPrices>
+        )}
+
         <Footer>
           <span>
             <b>{productItem?.obs1}</b>

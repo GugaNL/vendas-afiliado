@@ -14,4 +14,8 @@ html {
 button {
     cursor: pointer;
 }
+
+span, h1, h2, h3, a, button {
+    font-family: 'Roboto';
+}
 `

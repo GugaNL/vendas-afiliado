@@ -7,7 +7,7 @@ export const ProductBoxContainer = styled.div``;
 export const ContentImage = styled.div`
   margin-bottom: 4px !important;
   width: 100%;
-  min-height: 327px;
+  min-height: 160px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -54,6 +54,7 @@ export const ProductTitle = styled.span`
   line-height: 20px;
   color: #0f1111;
   transition: all 0.2s;
+  //font-family: 'Roboto';
 
   &:hover {
     color: ${(props) => props.theme.colors.secondary};
@@ -132,3 +133,16 @@ export const Footer = styled.div`
     font-size: 12px !important;
   }
 `;
+
+
+export const ImageProductUrl = styled.img`
+  //border: 0;
+  max-width: 225px;
+max-height: 160px;
+`
+
+export const ImageProductUrlSec = styled(Image)`
+  border: 0;
+  border: none;
+  margin: 0;
+`

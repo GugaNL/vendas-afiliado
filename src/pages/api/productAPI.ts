@@ -42,3 +42,16 @@ export const listProductsByTitle = async (page: number, limit: number, title: st
     return error;
   }
 };
+
+export const listProductsByCategory = async (page: number, limit: number, categoryId: number) => {
+  try {
+    const { data }: AxiosResponse = await api.post<IProduct>(
+      `produto/lista-categoria?page=${page}&limit=${limit}`, {
+        categoryId
+      }
+    );
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
