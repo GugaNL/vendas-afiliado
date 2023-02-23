@@ -10,6 +10,7 @@ import { ProductBox } from "../../atoms/ProductBox";
 import { Header } from "../../organisms/Header";
 import { Carousel } from "../Carousel";
 import { Footer } from "../../organisms/Footer";
+import { EmptyResult } from "../EmptyResult";
 //Services APIs
 import {
   listProducts,
@@ -28,6 +29,7 @@ const Layout = () => {
   const [totalProducts, setTotalProducts] = useState(0);
   const [page, setPage] = useState(0);
   const [activeCategory, setActiveCategory] = useState("");
+  const [showEmptyResult, setShowEmptyResult] = useState(false);
 
   const limit = 12;
   const pageCount = Math.ceil(totalProducts / limit);
@@ -45,6 +47,9 @@ const Layout = () => {
     //setLoading(true);
     if (filteredTerm) {
       setFilteredTerm("");
+    }
+    if (showEmptyResult) {
+      setShowEmptyResult(false);
     }
     const responseProducts = await listProducts(page, limit);
 
@@ -66,12 +71,19 @@ const Layout = () => {
 
   const getProductsByTitle = useCallback(
     async (page = 1, limit = 5, title: string) => {
+      if (showEmptyResult) {
+        setShowEmptyResult(false);
+      }
       setFilteredTerm(title);
       const response = await listProductsByTitle(page, limit, title);
       if (response && response.success) {
         const { products: { rows = [], count = 0 } = {} } = response;
         setProducts(rows);
         setTotalProducts(count);
+
+        if (rows && rows.length === 0) {
+          setShowEmptyResult(true);
+        }
 
         const idsToExclude = rows.map((item: any) => {
           return item.id;
@@ -87,6 +99,9 @@ const Layout = () => {
 
   const getProductsByCategory = useCallback(
     async (page = 1, limit = 5, categorySelected: any) => {
+      if (showEmptyResult) {
+        setShowEmptyResult(false);
+      }
       const response = await listProductsByCategory(
         page,
         limit,
@@ -97,6 +112,10 @@ const Layout = () => {
         setProducts(rows);
         setTotalProducts(count);
         setActiveCategory(categorySelected?.name);
+
+        if (rows && rows.length === 0) {
+          setShowEmptyResult(true);
+        }
 
         const idsToExclude = rows.map((item: any) => {
           return item.id;
@@ -116,7 +135,9 @@ const Layout = () => {
 
       if (response && response.success) {
         const { products = [] } = response;
-        setIframeProducts(products);
+        if (products.length > 0) {
+          setIframeProducts(products);
+        }
       } else {
         //error msg
       }
@@ -142,6 +163,7 @@ const Layout = () => {
   const clearActivePageAndFetch = (title = "", isFiltered = false) => {
     setPage(0);
     setActiveCategory("");
+    setShowEmptyResult(false);
     if (isFiltered) {
       getProductsByTitle(1, limit, title);
     } else {
@@ -152,6 +174,7 @@ const Layout = () => {
 
   const clearActivePageAndFetchByCategory = (categorySelected: any) => {
     setPage(0);
+    setShowEmptyResult(false);
     getProductsByCategory(1, limit, categorySelected);
     window.scrollTo(0, 0);
   };
@@ -183,29 +206,38 @@ const Layout = () => {
           />
         )}
 
-        <Grid sm={2} md={2} lg={3} xl={4}>
-          {products &&
-            products.length > 0 &&
-            products.map((item, index) => (
-              <ProductBox key={index} productItem={item} />
-            ))}
-        </Grid>
-        <PaginationLib
-          breakLabel="..."
-          pageRangeDisplayed={5}
-          previousLabel={"← Anterior"}
-          nextLabel={"Próximo →"}
-          pageCount={pageCount}
-          forcePage={page}
-          onPageChange={handlePageClick}
-          previousLinkClassName={"pagination__link"}
-          nextLinkClassName={"pagination__link"}
-          disabledClassName={"pagination__link--disabled"}
-          activeClassName={"pagination__link--active"}
-        />
+        {showEmptyResult ? (
+          <EmptyResult>
+            <h1>Não foram encontrados resultados para sua pesquisa.</h1>
+          </EmptyResult>
+        ) : (
+          <>
+            <Grid sm={2} md={2} lg={3} xl={4}>
+              {products &&
+                products.length > 0 &&
+                products.map((item, index) => (
+                  <ProductBox key={index} productItem={item} />
+                ))}
+            </Grid>
+            <PaginationLib
+              breakLabel="..."
+              pageRangeDisplayed={5}
+              previousLabel={"← Anterior"}
+              nextLabel={"Próximo →"}
+              pageCount={pageCount}
+              forcePage={page}
+              onPageChange={handlePageClick}
+              previousLinkClassName={"pagination__link"}
+              nextLinkClassName={"pagination__link"}
+              disabledClassName={"pagination__link--disabled"}
+              activeClassName={"pagination__link--active"}
+            />
+          </>
+        )}
+
         {iframeProducts && iframeProducts.length > 0 && (
           <Carousel
-            title="Ofertas em destaque"
+            title="Veja também"
             iframeProducts={iframeProducts}
           />
         )}

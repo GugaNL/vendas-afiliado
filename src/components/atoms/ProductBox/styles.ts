@@ -12,7 +12,7 @@ export const ContentImage = styled.div`
   display: flex;
   justify-content: center;
   transition: all ease 0.35s;
-  transform: scale(0.90);
+  transform: scale(0.9);
 
   &:hover {
     transform: scale(1);
@@ -60,7 +60,6 @@ export const ProductTitle = styled.span`
   line-height: 20px;
   color: #0f1111;
   transition: all 0.2s;
-  //font-family: 'Roboto';
 
   &:hover {
     color: ${(props) => props.theme.colors.secondary};
@@ -140,15 +139,14 @@ export const Footer = styled.div`
   }
 `;
 
-
 export const ImageProductUrl = styled.img`
   //border: 0;
   max-width: 225px;
-max-height: 160px;
-`
+  max-height: 160px;
+`;
 
 export const ImageProductUrlSec = styled(Image)`
   border: 0;
   border: none;
   margin: 0;
-`
+`;
