@@ -18,6 +18,7 @@ export const Grid = styled.div.attrs((props: GridProps) => ({
   grid-column-gap: 16px; //Espaçamento entre as colunas
   grid-row-gap: 16px; //Espaçamento entre as linhas
   grid-template-columns: 1fr;
+  margin-top: 40px;
 
   ${BreakAt(400)} {
     grid-template-columns: repeat(${(props) => props.sm}, 1fr);

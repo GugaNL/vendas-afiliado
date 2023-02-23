@@ -18,6 +18,7 @@ import {
   listProductsByCategory,
 } from "../../../pages/api/productAPI";
 import { listCategories } from "../../../pages/api/categorytAPI";
+import { Breadcrumb } from "../Breadcrumb";
 
 const Layout = () => {
   const [categories, setCategories] = useState([]);
@@ -26,6 +27,7 @@ const Layout = () => {
   const [iframeProducts, setIframeProducts] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
   const [page, setPage] = useState(0);
+  const [activeCategory, setActiveCategory] = useState("");
 
   const limit = 12;
   const pageCount = Math.ceil(totalProducts / limit);
@@ -84,12 +86,17 @@ const Layout = () => {
   );
 
   const getProductsByCategory = useCallback(
-    async (page = 1, limit = 5, categoryId: number) => {
-      const response = await listProductsByCategory(page, limit, categoryId);
+    async (page = 1, limit = 5, categorySelected: any) => {
+      const response = await listProductsByCategory(
+        page,
+        limit,
+        categorySelected?.id
+      );
       if (response && response.success) {
         const { products: { rows = [], count = 0 } = {} } = response;
         setProducts(rows);
         setTotalProducts(count);
+        setActiveCategory(categorySelected?.name);
 
         const idsToExclude = rows.map((item: any) => {
           return item.id;
@@ -134,7 +141,7 @@ const Layout = () => {
 
   const clearActivePageAndFetch = (title = "", isFiltered = false) => {
     setPage(0);
-
+    setActiveCategory("");
     if (isFiltered) {
       getProductsByTitle(1, limit, title);
     } else {
@@ -143,9 +150,9 @@ const Layout = () => {
     }
   };
 
-  const clearActivePageAndFetchByCategory = (categoryId: number) => {
+  const clearActivePageAndFetchByCategory = (categorySelected: any) => {
     setPage(0);
-    getProductsByCategory(1, limit, categoryId);
+    getProductsByCategory(1, limit, categorySelected);
   };
 
   return (
@@ -161,13 +168,20 @@ const Layout = () => {
         {categories && categories.length > 0 && (
           <FilterCategory
             categories={categories}
-            getProductsByCategory={(categoryId: number) =>
-              clearActivePageAndFetchByCategory(categoryId)
+            getProductsByCategory={(categorySelected: any) =>
+              clearActivePageAndFetchByCategory(categorySelected)
             }
           />
         )}
       </Aside>
       <Content>
+        {activeCategory && (
+          <Breadcrumb
+            currentCategory={activeCategory}
+            clearActivePageAndFetch={() => clearActivePageAndFetch("", false)}
+          />
+        )}
+
         <Grid sm={2} md={2} lg={3} xl={4}>
           {products &&
             products.length > 0 &&

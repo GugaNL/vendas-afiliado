@@ -28,9 +28,15 @@ export const ProductBox = ({ productItem }: any) => {
         productItem?.imgUrlTag3 && (
           <ContentImage>
             <Link href={productItem?.imgUrlTag1} target="_blank">
+              <ContentImageCover />
               <ImageProductUrl src={productItem?.imgUrlTag2} alt="" />
             </Link>
-            <ImageProductUrlSec src={productItem?.imgUrlTag3} width="1" height="1" alt="" />
+            <ImageProductUrlSec
+              src={productItem?.imgUrlTag3}
+              width="1"
+              height="1"
+              alt=""
+            />
           </ContentImage>
         )}
 

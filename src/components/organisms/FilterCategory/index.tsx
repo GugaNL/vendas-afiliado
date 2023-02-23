@@ -13,7 +13,7 @@ type FilterCategoryProps = {
 
 export const FilterCategory = ({ categories, getProductsByCategory }: FilterCategoryProps) => {
 
-  const search = (categorySelected: number) => {
+  const search = (categorySelected: any) => {
     getProductsByCategory(categorySelected);
   };
 
@@ -25,7 +25,7 @@ export const FilterCategory = ({ categories, getProductsByCategory }: FilterCate
           categories.length &&
           categories.map((item: any, index: number) => (
             <CategoryListItem key={index}>
-              <CategoryItemLink href="javascript:void(0)" onClick={() => search(item.id)}>{item?.name}</CategoryItemLink>
+              <CategoryItemLink href="javascript:void(0)" onClick={() => search(item)}>{item?.name}</CategoryItemLink>
             </CategoryListItem>
           ))}
       </CategoryList>

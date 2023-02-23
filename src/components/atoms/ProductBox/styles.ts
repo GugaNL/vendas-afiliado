@@ -11,6 +11,12 @@ export const ContentImage = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
+  transition: all ease 0.35s;
+  transform: scale(0.90);
+
+  &:hover {
+    transform: scale(1);
+  }
 `;
 
 export const ContentImageCover = styled.div`
