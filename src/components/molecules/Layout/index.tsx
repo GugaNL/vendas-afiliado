@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { LayoutContainer, PaginationLib } from "./styles";
+import { ContentLoader, LayoutContainer, PaginationLib } from "./styles";
+import { TailSpin } from "react-loader-spinner";
 //Components
 import Aside from "../Aside";
 import Content from "../Content";
@@ -31,6 +32,7 @@ const Layout = () => {
   const [page, setPage] = useState(0);
   const [activeCategory, setActiveCategory] = useState("");
   const [showEmptyResult, setShowEmptyResult] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const limit = 12;
   const pageCount = Math.ceil(totalProducts / limit);
@@ -45,7 +47,7 @@ const Layout = () => {
   }, []);
 
   const getProducts = useCallback(async (page = 1, limit = 5) => {
-    //setLoading(true);
+    setLoading(true);
     if (filteredTerm) {
       setFilteredTerm("");
     }
@@ -55,10 +57,10 @@ const Layout = () => {
     const responseProducts = await listProducts(page, limit);
 
     if (responseProducts && responseProducts.success) {
-      //setLoading(false);
       const { products: { rows = [], count = 0 } = {} } = responseProducts;
       setProducts(rows);
       setTotalProducts(count);
+      setLoading(false);
 
       const idsToExclude = rows.map((item: any) => {
         return item.id;
@@ -66,12 +68,13 @@ const Layout = () => {
 
       getIframeProducts(1, 10, idsToExclude);
     } else {
-      //setLoading(false);
+      setLoading(false);
     }
   }, []);
 
   const getProductsByTitle = useCallback(
     async (page = 1, limit = 5, title: string) => {
+      setLoading(true);
       if (showEmptyResult) {
         setShowEmptyResult(false);
       }
@@ -81,6 +84,7 @@ const Layout = () => {
         const { products: { rows = [], count = 0 } = {} } = response;
         setProducts(rows);
         setTotalProducts(count);
+        setLoading(false);
 
         if (rows && rows.length === 0) {
           setShowEmptyResult(true);
@@ -92,7 +96,7 @@ const Layout = () => {
 
         getIframeProducts(1, 10, idsToExclude);
       } else {
-        //error msg
+        setLoading(false);
       }
     },
     []
@@ -214,26 +218,43 @@ const Layout = () => {
           </EmptyResult>
         ) : (
           <>
-            <Grid sm={2} md={2} lg={3} xl={4}>
-              {products &&
-                products.length > 0 &&
-                products.map((item, index) => (
-                  <ProductBox key={index} productItem={item} />
-                ))}
-            </Grid>
-            <PaginationLib
-              breakLabel="..."
-              pageRangeDisplayed={5}
-              previousLabel={"← Anterior"}
-              nextLabel={"Próximo →"}
-              pageCount={pageCount}
-              forcePage={page}
-              onPageChange={handlePageClick}
-              previousLinkClassName={"pagination__link"}
-              nextLinkClassName={"pagination__link"}
-              disabledClassName={"pagination__link--disabled"}
-              activeClassName={"pagination__link--active"}
-            />
+            {loading ? (
+              <ContentLoader>
+                <TailSpin
+                  height="120"
+                  width="120"
+                  color="#ff7f00"
+                  ariaLabel="tail-spin-loading"
+                  radius="1"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                  visible={true}
+                />
+              </ContentLoader>
+            ) : (
+              <>
+                <Grid sm={2} md={2} lg={3} xl={4}>
+                  {products &&
+                    products.length > 0 &&
+                    products.map((item, index) => (
+                      <ProductBox key={index} productItem={item} />
+                    ))}
+                </Grid>
+                <PaginationLib
+                  breakLabel="..."
+                  pageRangeDisplayed={5}
+                  previousLabel={"← Anterior"}
+                  nextLabel={"Próximo →"}
+                  pageCount={pageCount}
+                  forcePage={page}
+                  onPageChange={handlePageClick}
+                  previousLinkClassName={"pagination__link"}
+                  nextLinkClassName={"pagination__link"}
+                  disabledClassName={"pagination__link--disabled"}
+                  activeClassName={"pagination__link--active"}
+                />
+              </>
+            )}
           </>
         )}
 
