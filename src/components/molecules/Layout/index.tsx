@@ -11,6 +11,8 @@ import { Header } from "../../organisms/Header";
 import { Carousel } from "../Carousel";
 import { Footer } from "../../organisms/Footer";
 import { EmptyResult } from "../EmptyResult";
+import { Breadcrumb } from "../Breadcrumb";
+import { AfiliateInfo } from "../AfiliateInfo";
 //Services APIs
 import {
   listProducts,
@@ -19,7 +21,6 @@ import {
   listProductsByCategory,
 } from "../../../pages/api/productAPI";
 import { listCategories } from "../../../pages/api/categorytAPI";
-import { Breadcrumb } from "../Breadcrumb";
 
 const Layout = () => {
   const [categories, setCategories] = useState([]);
@@ -182,6 +183,7 @@ const Layout = () => {
   return (
     <LayoutContainer>
       <Header />
+      <AfiliateInfo />
       <Aside>
         <SearchBox
           getProductsByTitle={(title: string) =>
@@ -236,10 +238,7 @@ const Layout = () => {
         )}
 
         {iframeProducts && iframeProducts.length > 0 && (
-          <Carousel
-            title="Veja também"
-            iframeProducts={iframeProducts}
-          />
+          <Carousel title="Veja também" iframeProducts={iframeProducts} />
         )}
       </Content>
       <Footer />
