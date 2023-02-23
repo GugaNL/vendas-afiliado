@@ -153,6 +153,7 @@ const Layout = () => {
   const clearActivePageAndFetchByCategory = (categorySelected: any) => {
     setPage(0);
     getProductsByCategory(1, limit, categorySelected);
+    window.scrollTo(0, 0);
   };
 
   return (

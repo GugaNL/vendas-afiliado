@@ -18,7 +18,7 @@ export const Header = () => {
     <HeaderContainer>
       <ContentDescription>
         <LogoContent>
-          <HeaderLink href="#">
+          <HeaderLink href="/">
             <LogoImage src={logo} alt="" />
           </HeaderLink>
         </LogoContent>
@@ -28,12 +28,12 @@ export const Header = () => {
       </ContentDescription>
       <ContactContent>
         <ContentContactElement>
-          <HeaderLink href="">
+          <HeaderLink href="/">
             <ContentText>Início</ContentText>
           </HeaderLink>
         </ContentContactElement>
         <ContentContactElement>
-          <HeaderLink href="">
+          <HeaderLink href="mailto:promomaniadigital@gmail.com">
             <ContentText>Contato</ContentText>
           </HeaderLink>
         </ContentContactElement>

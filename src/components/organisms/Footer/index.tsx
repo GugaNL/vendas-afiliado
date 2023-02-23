@@ -28,14 +28,14 @@ export const Footer = () => {
             <Heading>
               <h6>Contato</h6>
             </Heading>
-            <ContactContent href="">
+            <ContactContent href="mailto:promomaniadigital@gmail.com">
               <IconContainer>
                 <MdOutlineMail />
               </IconContainer>
               promomaniadigital@gmail.com
             </ContactContent>
           </div>
-          <div>
+          {/* <div>
             <Heading>
               <h6>Redes sociais</h6>
             </Heading>
@@ -55,7 +55,7 @@ export const Footer = () => {
                 Instagram
               </FooterLink>
             </p>
-          </div>
+          </div> */}
         </Grid>
       </Container>
     </FooterContainer>
