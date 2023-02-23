@@ -42,7 +42,10 @@ export const HeaderLink = styled(Link)`
   text-decoration: none;
 `;
 
-export const LogoImage = styled(Image)``;
+export const LogoImage = styled(Image)`
+  width: 100px;
+  height: 33px;
+`;
 
 export const HeaderDescription = styled.div`
   margin-left: 32px;
@@ -54,7 +57,7 @@ export const HeaderDescription = styled.div`
     height: 27px;
     background: rgba(255, 255, 255, 0.3);
     position: absolute;
-    left: 190px;
+    left: 170px;
     display: none;
   }
 

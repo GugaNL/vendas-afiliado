@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   ContactContent,
   ContentDescription,
@@ -10,10 +9,9 @@ import {
   ContentText,
   ContentContactElement,
 } from "./styles";
-import logo from "../../../assets/imgs/cupomlogo.png";
+import logo from "../../../assets/imgs/logo.png";
 
 export const Header = () => {
-
   return (
     <HeaderContainer>
       <ContentDescription>

@@ -223,7 +223,7 @@ const Layout = () => {
                 <TailSpin
                   height="120"
                   width="120"
-                  color="#ff7f00"
+                  color="#cc0c39"
                   ariaLabel="tail-spin-loading"
                   radius="1"
                   wrapperStyle={{}}
