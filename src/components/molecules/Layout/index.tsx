@@ -83,6 +83,26 @@ const Layout = () => {
     []
   );
 
+  const getProductsByCategory = useCallback(
+    async (page = 1, limit = 5, categoryId: number) => {
+      const response = await listProductsByCategory(page, limit, categoryId);
+      if (response && response.success) {
+        const { products: { rows = [], count = 0 } = {} } = response;
+        setProducts(rows);
+        setTotalProducts(count);
+
+        const idsToExclude = rows.map((item: any) => {
+          return item.id;
+        });
+
+        getIframeProducts(1, 10, idsToExclude);
+      } else {
+        //error msg
+      }
+    },
+    []
+  );
+
   const getIframeProducts = useCallback(
     async (page = 1, limit = 5, idsToExclude = []) => {
       const response = await listProductsIframe(page, limit, idsToExclude);
@@ -125,7 +145,7 @@ const Layout = () => {
 
   const clearActivePageAndFetchByCategory = (categoryId: number) => {
     setPage(0);
-    listProductsByCategory(1, limit, categoryId);
+    getProductsByCategory(1, limit, categoryId);
   };
 
   return (
