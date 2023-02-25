@@ -2,7 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 
-export const ProductBoxContainer = styled.div``;
+export const ProductBoxContainer = styled.div`
+    &:hover {
+      div > a > span {
+        color: ${(props) => props.theme.colors.secondary};
+      }
+    }
+`;
 
 export const ContentImage = styled.div`
   margin-bottom: 4px !important;
@@ -61,9 +67,9 @@ export const ProductTitle = styled.span`
   color: #0f1111;
   transition: all 0.2s;
 
-  &:hover {
-    color: ${(props) => props.theme.colors.secondary};
-  }
+  /* &:hover {
+    color: {(props) => props.theme.colors.secondary}; 
+  } */
 `;
 
 export const ContainerDiscount = styled.div`
