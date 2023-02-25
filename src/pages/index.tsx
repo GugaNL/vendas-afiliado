@@ -5,7 +5,7 @@ export default function Index() {
   return (
     <>
       <Head>
-        <title>Caça Promoções</title>
+        <title>Promo Mania Digital</title>
       </Head>
       <Home />
     </>

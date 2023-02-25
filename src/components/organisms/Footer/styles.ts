@@ -65,7 +65,7 @@ export const Heading = styled.div`
       position: absolute;
       left: 0;
       bottom: -3px;
-      background-color: ${(props) => props.theme.colors.yellow};
+      background-color: #cc0c39;
       height: 5px;
       width: 70px;
     }

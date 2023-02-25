@@ -13,7 +13,7 @@ import { Carousel } from "../Carousel";
 import { Footer } from "../../organisms/Footer";
 import { EmptyResult } from "../EmptyResult";
 import { Breadcrumb } from "../Breadcrumb";
-import { AfiliateInfo } from "../AfiliateInfo";
+import { SubHeader } from "../SubHeader";
 //Services APIs
 import {
   listProducts,
@@ -187,7 +187,7 @@ const Layout = () => {
   return (
     <LayoutContainer>
       <Header />
-      <AfiliateInfo />
+      <SubHeader />
       <Aside>
         <SearchBox
           getProductsByTitle={(title: string) =>

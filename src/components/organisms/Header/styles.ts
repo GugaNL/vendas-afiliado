@@ -36,6 +36,12 @@ export const LogoContent = styled.div`
   margin: 10px 0;
   overflow: hidden;
   float: left;
+  margin-left: 8px;
+
+  ${BreakAt(601)} {
+    flex-direction: row;
+    margin-left: 0;
+  }
 `;
 
 export const HeaderLink = styled(Link)`
@@ -43,8 +49,8 @@ export const HeaderLink = styled(Link)`
 `;
 
 export const LogoImage = styled(Image)`
-  width: 100px;
-  height: 33px;
+  width: 160px;
+  height: 45px;
 `;
 
 export const HeaderDescription = styled.div`
@@ -57,7 +63,7 @@ export const HeaderDescription = styled.div`
     height: 27px;
     background: rgba(255, 255, 255, 0.3);
     position: absolute;
-    left: 170px;
+    left: 230px;
     display: none;
   }
 
@@ -122,13 +128,14 @@ export const ContactContent = styled.div`
   margin-right: 18px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin-top: 12px;
 
   ${BreakAt(601)} {
     margin-top: 0;
   }
 
-  ${BreakAt(340)} {
+  ${BreakAt(380)} {
     flex-direction: row;
   }
 `;
@@ -152,6 +159,6 @@ export const ContentContactElement = styled.div`
   margin: 5px 20px;
 
   ${BreakAt(340)} {
-    margin: 0 20px;
+    margin: 5px 20px;
   }
 `;
