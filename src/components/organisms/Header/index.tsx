@@ -16,7 +16,7 @@ export const Header = () => {
     <HeaderContainer>
       <ContentDescription>
         <LogoContent>
-          <HeaderLink href="/">
+          <HeaderLink href="/" onClick={() => window.location.reload()}>
             <LogoImage src={logo} alt="" />
           </HeaderLink>
         </LogoContent>
