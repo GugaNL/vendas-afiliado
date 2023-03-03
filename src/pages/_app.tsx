@@ -6,6 +6,10 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../styles/theme";
 import { GlobalStyles } from "../styles/global-styles";
 
+//SEO
+import { DefaultSeo } from 'next-seo';
+import SEO from "../../next-seo-config";
+
 function Loading() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -35,6 +39,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <GlobalStyles />
       <ThemeProvider theme={theme}>
         {Loading()}
+        <DefaultSeo {...SEO} />
         <Component {...pageProps} />
       </ThemeProvider>
     </>
